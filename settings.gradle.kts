@@ -31,7 +31,8 @@ if (!gradle.startParameter.isOffline) {
 val isJenkinsBuild = arrayOf("JENKINS_HOME", "BUILD_ID").all { System.getenv(it) != null }
 // GITHUB_REPOSITORY and GITHUB_RUN_ID set automatically during Github Actions run
 val isGithubActionsBuild = arrayOf("GITHUB_REPOSITORY", "GITHUB_RUN_ID").all { System.getenv(it) != null }
-if (isJenkinsBuild || isGithubActionsBuild) {
+val isCiBuild = isJenkinsBuild || isGithubActionsBuild
+if (isCiBuild) {
   gradleEnterprise {
     buildScan {
       // Build Scan enabled and TOS accepted for Jenkins lab build. This does not apply to builds on
