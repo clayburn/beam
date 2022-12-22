@@ -1,3 +1,5 @@
+import com.gradle.enterprise.gradleplugin.internal.extension.BuildScanExtensionWithHiddenFeatures
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -32,14 +34,22 @@ val isJenkinsBuild = arrayOf("JENKINS_HOME", "BUILD_ID").all { System.getenv(it)
 // GITHUB_REPOSITORY and GITHUB_RUN_ID set automatically during Github Actions run
 val isGithubActionsBuild = arrayOf("GITHUB_REPOSITORY", "GITHUB_RUN_ID").all { System.getenv(it) != null }
 val isCiBuild = isJenkinsBuild || isGithubActionsBuild
-if (isCiBuild) {
-  gradleEnterprise {
-    buildScan {
-      // Build Scan enabled and TOS accepted for Jenkins lab build. This does not apply to builds on
-      // non-Jenkins machines. Developers need to separately enable and accept TOS to use build scans.
-      termsOfServiceUrl = "https://gradle.com/terms-of-service"
-      termsOfServiceAgree = "yes"
-      publishAlways()
+
+gradleEnterprise {
+  buildScan {
+    capture { isTaskInputFiles = true }
+    isUploadInBackground = !isCiBuild
+
+    publishAlways()
+
+    if (!gradle.startParameter.isBuildScan) {
+      server = "https://ge.apache.org"
+      this as BuildScanExtensionWithHiddenFeatures
+      publishIfAuthenticated()
+    }
+
+    obfuscation {
+      ipAddresses { addresses -> addresses.map { "0.0.0.0" } }
     }
   }
 }
