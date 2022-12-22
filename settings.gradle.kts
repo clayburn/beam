@@ -21,12 +21,14 @@ import com.gradle.enterprise.gradleplugin.internal.extension.BuildScanExtensionW
 
 plugins {
   id("com.gradle.enterprise") version "3.12.1" apply false
+  id("com.gradle.common-custom-user-data-gradle-plugin") version "1.8.1" apply false
 }
 
 
 // Plugins which require online access should not be enabled when running in offline mode.
 if (!gradle.startParameter.isOffline) {
   apply(plugin = "com.gradle.enterprise")
+  apply(plugin = "com.gradle.common-custom-user-data-gradle-plugin")
 }
 
 // JENKINS_HOME and BUILD_ID set automatically during Jenkins execution
