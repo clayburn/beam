@@ -85,7 +85,7 @@ jobs:
       github.event_name == 'schedule' ||
       github.event_name == 'workflow_dispatch' ||
       github.event.comment.body == 'Run Java_Amazon-Web-Services2_IO_Direct PreCommit'
-    runs-on: [self-hosted, ubuntu-20.04, main]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Setup repository
@@ -101,6 +101,13 @@ jobs:
           arguments: |
             -PdisableSpotlessCheck=true \
             -PdisableCheckStyle=true \
+          ge-access-token: ${{ secrets.GE_ACCESS_TOKEN }}
+          ge-cache-username: ${{ secrets.GE_CACHE_USERNAME }}
+          ge-cache-password: ${{ secrets.GE_CACHE_PASSWORD }}
+#        env:
+#          GRADLE_ENTERPRISE_ACCESS_KEY: ${{ secrets.GE_ACCESS_TOKEN }}
+#          GRADLE_ENTERPRISE_CACHE_USERNAME: ${{ secrets.GE_CACHE_USERNAME }}
+#          GRADLE_ENTERPRISE_CACHE_PASSWORD: ${{ secrets.GE_CACHE_PASSWORD }}
       - name: run Amazon-Web-Services2 IO IT script
         uses: ./.github/actions/gradle-command-self-hosted-action
         with:
