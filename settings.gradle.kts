@@ -15,7 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.gradle.enterprise.gradleplugin.internal.extension.BuildScanExtensionWithHiddenFeatures
 
 pluginManagement {
   plugins {
@@ -24,7 +23,7 @@ pluginManagement {
 }
 
 plugins {
-  id("com.gradle.develocity") version "3.19"
+  id("com.gradle.develocity") version "4.0.1"
   id("com.gradle.common-custom-user-data-gradle-plugin") version "2.2.1"
 }
 
