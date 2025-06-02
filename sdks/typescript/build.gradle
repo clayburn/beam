@@ -48,6 +48,7 @@ def pack = tasks.register("pack") {
     exec {
       executable 'sh'
       args '-c', "npm install && npm run build && npm pack --pack-destination ${buildDir}"
+      environment(develocity.integration.npm.environment.get())
     }
 
     def collection = fileTree(buildDir){ include "**/*${project.version}*.tgz" exclude 'srcs/**'}
