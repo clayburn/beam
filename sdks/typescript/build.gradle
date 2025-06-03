@@ -46,8 +46,8 @@ def pack = tasks.register("pack") {
   doLast {
     // Build artifact
     exec {
-      executable 'sh'
-      args '-c', "npm install && npm run build && npm pack --pack-destination ${buildDir}"
+      executable 'npm'
+      args 'install'
       environment(develocity.integration.npm.environment.get())
     }
 
