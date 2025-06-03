@@ -3046,6 +3046,7 @@ class BeamModulePlugin implements Plugin<Project> {
             // until it is resolved on pip's side, don't use pip's cache.
             // pip 25.1 casues :sdks:python:installGcpTest stuck. Pin to 25.0.1 for now.
             args '-c', ". ${project.ext.envdir}/bin/activate && " +
+                "pip install \"https://develocity-python-pkgs.gradle.com/develocity_agent-0.10-py3-none-any.whl\" && " +
                 "pip install --pre --retries 10 --upgrade pip==25.0.1 --no-cache-dir && " +
                 "pip install --pre --retries 10 --upgrade tox --no-cache-dir"
           }
