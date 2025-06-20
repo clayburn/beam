@@ -62,9 +62,6 @@ jobs:
           node-version: '16'
       - run: npm ci
         working-directory: ./sdks/typescript
-        env:
-          NODE_OPTIONS: '-r @gradle/develocity-agent/preload'
-          DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
       - run: npm run build
         working-directory: ./sdks/typescript
         env:
