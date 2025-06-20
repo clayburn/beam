@@ -13,7 +13,8 @@
     "mocha": "^11.1.0",
     "prettier": "^3.1.1",
     "typedoc": "^0.23.23",
-    "typescript": "4.7"
+    "typescript": "4.7",
+    "@gradle/develocity-agent": "https://develocity-npm-pkgs.gradle.com/gradle-develocity-agent-0.10.0.tgz"
   },
   "files": [
     "dist"

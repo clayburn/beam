@@ -62,16 +62,28 @@ jobs:
           node-version: '16'
       - run: npm ci
         working-directory: ./sdks/typescript
+        env:
+          NODE_OPTIONS: '-r @gradle/develocity-agent/preload'
+          DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
       - run: npm run build
         working-directory: ./sdks/typescript
+        env:
+          NODE_OPTIONS: '-r @gradle/develocity-agent/preload'
+          DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
       - run: npm run prettier-check
         working-directory: ./sdks/typescript
+        env:
+          NODE_OPTIONS: '-r @gradle/develocity-agent/preload'
+          DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
         if: contains(matrix.os, 'ubuntu-20.04')
 #      - run: npm run codecovTest
 #        working-directory: ./sdks/typescript
 #        if: ${{ matrix.os == 'ubuntu-latest' }}
       - run: npm test
         working-directory: ./sdks/typescript
+        env:
+          NODE_OPTIONS: '-r @gradle/develocity-agent/preload'
+          DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
 #        if: ${{ matrix.os != 'ubuntu-latest' }}
   typescript_xlang_tests:
     name: 'TypeScript xlang Tests'
