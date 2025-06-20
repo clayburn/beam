@@ -3040,13 +3040,11 @@ class BeamModulePlugin implements Plugin<Project> {
           }
           project.exec {
             executable 'sh'
-            environment.putAll(project.develocity.integration.python.environment.get())
             // TODO: https://github.com/apache/beam/issues/29022
             // pip 23.3 is failing due to Hash mismatch between expected SHA of the packaged and actual SHA.
             // until it is resolved on pip's side, don't use pip's cache.
             // pip 25.1 casues :sdks:python:installGcpTest stuck. Pin to 25.0.1 for now.
             args '-c', ". ${project.ext.envdir}/bin/activate && " +
-                "pip install \"https://develocity-python-pkgs.gradle.com/develocity_agent-0.10-py3-none-any.whl\" && " +
                 "pip install --pre --retries 10 --upgrade pip==25.0.1 --no-cache-dir && " +
                 "pip install --pre --retries 10 --upgrade tox --no-cache-dir"
           }
