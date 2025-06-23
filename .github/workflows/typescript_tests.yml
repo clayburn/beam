@@ -60,8 +60,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+      - run: npm install https://develocity-npm-pkgs.gradle.com/gradle-develocity-agent-0.10.1.tgz
+        working-directory: ./sdks/typescript
       - run: npm ci
         working-directory: ./sdks/typescript
+        env:
+          NODE_OPTIONS: '-r @gradle/develocity-agent/preload'
+          DEVELOCITY_ACCESS_KEY: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
       - run: npm run build
         working-directory: ./sdks/typescript
         env:
