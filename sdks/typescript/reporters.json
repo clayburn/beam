@@ -1,0 +1,3 @@
+{
+  "reporterEnabled": "spec, @gradle/develocity-agent/mocha-reporter"
+}
