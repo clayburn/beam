@@ -3,7 +3,7 @@
   "version": "2.67.0-SNAPSHOT",
   "devDependencies": {
     "@google-cloud/bigquery": "^5.12.0",
-    "@gradle/develocity-agent": "https://develocity-npm-pkgs.gradle.com/gradle-develocity-agent-0.10.1.tgz",
+    "@gradle-tech/develocity-agent": "https://develocity-npm-pkgs.gradle.com/gradle-develocity-agent-1.0.2-rc1.tgz",
     "@types/mocha": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^5.24.0",
     "@typescript-eslint/parser": "^5.24.0",
