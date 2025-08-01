@@ -36,7 +36,7 @@ val isGithubActionsBuild = arrayOf("GITHUB_REPOSITORY", "GITHUB_RUN_ID").all { S
 val isCi = isJenkinsBuild || isGithubActionsBuild
 
 develocity {
-  server = "https://develocity.apache.org"
+  server = "https://ge.solutions-team.gradle.com"
   projectId = "beam"
 
   buildScan {
